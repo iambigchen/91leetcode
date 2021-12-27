@@ -35,3 +35,25 @@ var monostoneStack = function (T) {
   return result;
 };
 ```
+
+## bfs模板
+
+```js
+bfs(root) {
+ queue = []
+ queue.push(root)
+ while queue.length {
+  curLevel = queue
+  queue = []
+  for i = 0 to curLevel.length {
+   doSomething(curLevel[i])
+   if (curLevel[i].left) {
+    queue.push(curLevel[i].left)
+   }
+   if (curLevel[i].right) {
+    queue.push(curLevel[i].right)
+   }
+  }
+ }
+}
+```
