@@ -57,3 +57,42 @@ bfs(root) {
  }
 }
 ```
+
+## 快慢指针模板
+
+```js
+l = 0
+r = 0
+while 没有遍历完
+  if 一定条件
+    l += 1
+  r += 1
+return 合适的值
+```
+
+## 左右端点指针
+
+```js
+l = 0
+r = n - 1
+while l < r
+  if 找到了
+    return 找到的值
+  if 一定条件1
+    l += 1
+  else if  一定条件2
+    r -= 1
+return 没找到
+```
+
+## 固定间距指针
+
+```js
+l = 0
+r = k
+while 没有遍历完
+  自定义逻辑
+  l += 1
+  r += 1
+return 合适的值
+```
