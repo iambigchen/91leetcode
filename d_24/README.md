@@ -52,9 +52,9 @@ We can remove the sublist [6, 4] to get [1, 8, 5] which sums to 14 and is divisi
 JavaScript Code:
 
 ```javascript
-
+// 因为a可能是负数，所以需要这样求余
 var floorMod = function (a, b) {
-  return (a + b) % b;
+  return (a % b + b) % b;
 };
 class Solution {
     solve(nums, k) {
@@ -64,7 +64,7 @@ class Solution {
         var target = 0;
         var currSum = 0;
         for (let i = 0; i < nums.length; i++) {
-        target += nums[i];
+            target += nums[i];
         }
         target = target % k;
        for (let i =0; i < nums.length; i++) {
