@@ -106,3 +106,66 @@ return 合适的值
 C(n, m) = n!/m!(n-m)!
 
 A(n, m) = n!/(n-m)! = n * (n-1) * .... * (n - m + 1)
+
+## DJ算法模板
+
+```js
+const dijkstra = (graph, start, end) => {
+  const visited = new Set()
+  const minHeap = new MinPriorityQueue();
+  //注：此处new MinPriorityQueue()用了LC的内置API，它的enqueue由两个部分组成：
+  //element 和 priority。
+  //堆会按照priority排序，可以用element记录一些内容。
+  minHeap.enqueue(startPoint, 0)
+
+  while(!minHeap.isEmpty()){
+    const {element, priority} = minHeap.dequeue();
+    //下面这两个变量不是必须的，只是便于理解
+    const curPoint = element;
+    const curCost = priority;
+
+    if(curPoint === end) return curCost;
+    if(visited.has(curPoint)) continue;
+    visited.add(curPoint);
+
+    if(!graph[curPoint]) continue;
+    for(const [nextPoint, nextCost] of graph[curPoint]){
+      if(visited.has(nextPoint)) continue;
+      //注意heap里面的一定是从startPoint到某个点的距离；
+      //curPoint到nextPoint的距离是nextCost；但curPoint不一定是startPoint。
+      const accumulatedCost = nextCost + curCost;
+      minHeap.enqueue(nextPoint, accumulatedCost);
+    }
+  }
+  return -1
+}
+```
+
+## floydWarshall模板
+
+```js
+const floydWarshall = (graph, v)=>{
+  const dist = new Array(v).fill(0).map(() => new Array(v).fill(Number.MAX_SAFE_INTEGER))
+
+  for(let i = 0; i < v; i++){
+    for(let j = 0; j < v; j++){
+      //两个点相同，距离为0
+      if(i === j) dist[i][j] = 0;
+      //i 和 j 的距离已知
+      else if(graph[i][j]) dist[i][j] = graph[i][j];
+      //i 和 j 的距离未知，默认是最大值
+      else dist[i][j] = Number.MAX_SAFE_INTEGER;
+    }
+  }
+
+  //检查是否有一个点 k 使得 i 和 j 之间距离更短，如果有，则更新最短距离
+  for(let k = 0; k < v; k++){
+    for(let i = 0; i < v; i++){
+      for(let j = 0; j < v; j++){
+        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j])
+      }
+    }
+  }
+  return 看需要
+}
+```
