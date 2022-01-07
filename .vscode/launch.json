@@ -7,6 +7,24 @@
         {
             "type": "pwa-node",
             "request": "launch",
+            "name": "kuaisuSort",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/sort/kuaisu.js"
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "guibingSort",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/sort/guibing.js"
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
             "name": "minHeap",
             "skipFiles": [
                 "<node_internals>/**"
