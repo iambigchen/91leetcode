@@ -169,3 +169,17 @@ const floydWarshall = (graph, v)=>{
   return 看需要
 }
 ```
+
+## 生成矩阵图
+
+```js
+let graph = new Array(n).fill(0).map(() => new Array(n).fill(0))
+```
+
+```js
+let graph = {}
+
+for(const [from, to] of i) {
+  graph[from] = graph[from] ? graph[from].push([from, 0]) : [from, 0]
+}
+```
