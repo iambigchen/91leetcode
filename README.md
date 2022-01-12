@@ -183,3 +183,79 @@ for(const [from, to] of i) {
   graph[from] = graph[from] ? graph[from].push([from, 0]) : [from, 0]
 }
 ```
+
+## 二分法搜索模板
+
+```js
+function binarySearch(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    const mid = Math.floor(left + (right - left) / 2);
+    if (nums[mid] == target) return mid;
+    if (nums[mid] < target)
+      // 搜索区间变为 [mid+1, right]
+      left = mid + 1;
+    if (nums[mid] > target)
+      // 搜索区间变为 [left, mid - 1]
+      right = mid - 1;
+  }
+  return -1;
+}
+```
+
+## 二分法搜索最左侧模板
+
+```js
+function binarySearchLeft(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    while (left <= right) {
+      const mid = Math.floor(left + (right - left) / 2);
+      if (nums[mid] == target)
+        // 收缩右边界 !!重要一步
+        right = mid - 1;
+      if (nums[mid] < target)
+        // 搜索区间变为 [mid+1, right]
+        left = mid + 1;
+      if (nums[mid] > target)
+        // 搜索区间变为 [left, mid - 1]
+        right = mid - 1;
+    }
+    // 检查是否越界
+    if (left >= nums.length || nums[left] != target) return -1;
+    return left;
+}
+```
+
+## 二分法搜索最右侧模板
+
+```js
+function binarySearchRight(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    const mid = Math.floor(left + (right - left) / 2);
+    if (nums[mid] == target)
+      // 收缩左边界 !!重要一步
+      left = mid + 1;
+    if (nums[mid] < target)
+      // 搜索区间变为 [mid+1, right]
+      left = mid + 1;
+    if (nums[mid] > target)
+      // 搜索区间变为 [left, mid - 1]
+      right = mid - 1;
+  }
+  // 检查是否越界
+  if (right < 0 || nums[right] != target) return -1;
+  return right;
+}
+```
+
+1. 寻找最左插入位置 看成是寻找最右满足小于 x 的位置 + 1
+
+2. 寻找最右插入位置看成是寻找最左满足大于 x 的值
+
+3. 最左二分不断收缩右边界，最终返回左边界
+
+4. 最右二分不断收缩左边界，最终返回右边界

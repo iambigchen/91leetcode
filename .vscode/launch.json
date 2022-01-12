@@ -7,6 +7,15 @@
         {
             "type": "pwa-node",
             "request": "launch",
+            "name": "binarySearchLeft",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/binarySearchLeft.js"
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
             "name": "kuaisuSort",
             "skipFiles": [
                 "<node_internals>/**"
