@@ -288,3 +288,10 @@ while 右边界 < 合法条件：
     window左边界+1
     更新状态信息
 ```
+
+
+## string substring substr slice
+
+substring(start,end)返回指定下标间的字符，下标必须为正整数
+substr(start,length)返回从指定下标开始的长度为length的字符，可以为负数
+slice(start,end)返回指定下标间的字符，可以为负数
