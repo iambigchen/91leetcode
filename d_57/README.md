@@ -55,9 +55,11 @@ text1 和 text2 仅由小写英文字符组成。
 
 ## 思路
 
+动态规划，和718一样，都是求最长公共子序列，不过不同的是，这题是非连续的。所以动态规划方程为dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1])
+
 ## 关键点
 
--  
+DP LCS
 
 ## 代码
 
@@ -73,7 +75,21 @@ JavaScript Code:
  * @return {number}
  */
 var longestCommonSubsequence = function(text1, text2) {
-
+    let m = text1.length
+    let n = text2.length
+    let ans = 0
+    let dp = new Array(m+1).fill(0).map(() => Array(n+1).fill(0))
+    for(let i = 1; i < m + 1; i++) {
+        for(let j = 1; j < n + 1; j++) {
+            if (text1[i-1] == text2[j-1]) {
+                dp[i][j] = dp[i-1][j-1]+1
+                ans = Math.max(ans, dp[i][j])
+            } else {
+                dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1])
+            }
+        }
+    }
+    return ans
 };
 
 ```
@@ -83,7 +99,7 @@ var longestCommonSubsequence = function(text1, text2) {
 
 令 n 为数组长度。
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$O(n*m)$
+- 空间复杂度：$O(n*m)$
 
 
