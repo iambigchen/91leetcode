@@ -89,8 +89,8 @@ var removeDuplicates = function(nums) {
     let k = 2
     for(let fast = 0; fast < len; fast++) {
         if (slow < k || nums[fast] != nums[slow-k]) {
-            slow++
             nums[slow] = nums[fast]
+            slow++
         }
     }
     return slow
